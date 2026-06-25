@@ -1,0 +1,386 @@
+.chats {
+    width: 100%;
+    max-width: 700px;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0 auto;
+}
+
+.message-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 6px 0;
+}
+
+.user-row { align-items: flex-end; }
+.assistant-row { align-items: flex-start; }
+
+.assistant-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.assistant-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #10a37f, #0d8f6f);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.assistant-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #ececec;
+}
+
+.userMessage {
+    background-color: #2f2f2f;
+    padding: 12px 18px;
+    border-radius: 18px 18px 4px 18px;
+    max-width: 80%;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #ececec;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    /* Prevent long URLs from breaking layout */
+    word-break: break-word;
+}
+
+.assistant-content {
+    font-size: 15px;
+    line-height: 1.75;
+    color: #ececec;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    padding-left: 38px;
+    word-break: break-word;
+}
+
+/* Streaming cursor */
+.cursor-blink {
+    display: inline-block;
+    color: #10a37f;
+    animation: blink 0.85s step-start infinite;
+    font-weight: 400;
+    margin-left: 1px;
+    vertical-align: baseline;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Markdown styles */
+.assistant-content p { margin-bottom: 12px; }
+.assistant-content p:last-child { margin-bottom: 0; }
+
+.assistant-content ul, .assistant-content ol {
+    padding-left: 20px;
+    margin-bottom: 12px;
+}
+
+.assistant-content li { margin-bottom: 6px; }
+
+.assistant-content h1, .assistant-content h2, .assistant-content h3 {
+    margin: 16px 0 8px;
+    color: #ececec;
+    font-weight: 600;
+}
+
+.assistant-content h1 { font-size: 20px; }
+.assistant-content h2 { font-size: 17px; }
+.assistant-content h3 { font-size: 15px; }
+
+.assistant-content pre {
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    padding: 16px;
+    overflow-x: auto;
+    margin: 12px 0;
+    border: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+    /* Smooth horizontal scroll on mobile */
+    -webkit-overflow-scrolling: touch;
+    /* Prevent pre from breaking out of its container */
+    max-width: 100%;
+    white-space: pre;
+}
+
+.assistant-content code {
+    font-family: 'Menlo', 'Monaco', 'Consolas', monospace;
+    font-size: 13.5px;
+}
+
+.assistant-content :not(pre) > code {
+    background-color: rgba(255,255,255,0.08);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+    word-break: break-all;
+}
+
+.assistant-content blockquote {
+    border-left: 3px solid #10a37f;
+    padding-left: 14px;
+    color: #8e8ea0;
+    margin: 10px 0;
+    font-style: italic;
+}
+
+.assistant-content a {
+    color: #10a37f;
+    text-decoration: underline;
+    word-break: break-all;
+}
+
+.assistant-content strong { color: #fff; }
+.assistant-content em { color: #d4d4d8; }
+
+.assistant-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 14px;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.assistant-content th, .assistant-content td {
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 8px 12px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.assistant-content th {
+    background: rgba(255,255,255,0.05);
+    font-weight: 600;
+}
+
+.assistant-content hr {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin: 16px 0;
+}
+
+.hljs { background-color: transparent !important; }
+
+.scroll-anchor { height: 1px; }
+
+/* ── Tablet (769px – 1024px) ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .chats {
+        max-width: 640px;
+        padding: 20px 14px;
+    }
+}
+
+/* ── Mobile (≤768px) ── */
+@media (max-width: 768px) {
+    .chats {
+        padding: 16px 12px;
+        max-width: 100%;
+    }
+
+    .userMessage {
+        max-width: 90%;
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+
+    .assistant-content {
+        font-size: 14px;
+        padding-left: 34px;
+    }
+
+    .assistant-content pre {
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .assistant-content code {
+        font-size: 12.5px;
+    }
+
+    .assistant-content h1 { font-size: 18px; }
+    .assistant-content h2 { font-size: 16px; }
+    .assistant-content h3 { font-size: 14px; }
+
+    .assistant-content ul, .assistant-content ol {
+        padding-left: 16px;
+    }
+}
+
+/* ── Small phones (≤480px) ── */
+@media (max-width: 480px) {
+    .chats {
+        padding: 12px 10px;
+    }
+
+    .userMessage {
+        max-width: 95%;
+        font-size: 14px;
+        padding: 9px 12px;
+    }
+
+    .assistant-content {
+        padding-left: 0;
+    }
+
+    .assistant-header {
+        margin-bottom: 4px;
+    }
+
+    .assistant-content pre {
+        padding: 10px;
+        margin: 8px 0;
+    }
+}
+
+/* ── Very small phones (≤360px) ── */
+@media (max-width: 360px) {
+    .chats {
+        padding: 10px 8px;
+    }
+
+    .userMessage {
+        font-size: 13.5px;
+        padding: 8px 12px;
+    }
+
+    .assistant-content {
+        font-size: 13.5px;
+    }
+}
+
+/* ── Landscape mobile (short viewport) ── */
+@media (max-height: 500px) and (max-width: 900px) {
+    .chats {
+        padding: 8px 12px;
+    }
+
+    .message-row {
+        padding: 3px 0;
+    }
+
+    .userMessage {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    .assistant-content {
+        font-size: 14px;
+    }
+}
+
+/* ── Copy code button ── */
+.code-block-wrapper {
+    position: relative;
+    margin: 12px 0;
+}
+
+.code-block-wrapper pre {
+    margin: 0;
+    border-radius: 10px;
+    padding: 16px;
+    padding-top: 42px; /* space for copy button */
+    overflow-x: auto;
+    background-color: #1a1a1a;
+    border: 1px solid rgba(255,255,255,0.08);
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+    white-space: pre;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.06);
+    color: #8e8ea0;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    z-index: 2;
+    white-space: nowrap;
+    font-family: inherit;
+    /* Minimum touch target */
+    min-height: 30px;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.copy-btn:hover {
+    background: rgba(255,255,255,0.12);
+    color: #ececec;
+    border-color: rgba(255,255,255,0.2);
+}
+
+.copy-btn--copied {
+    background: rgba(16,163,127,0.15);
+    color: #10a37f;
+    border-color: rgba(16,163,127,0.3);
+}
+
+.copy-btn--copied:hover {
+    background: rgba(16,163,127,0.2);
+    color: #10a37f;
+}
+
+.copy-btn i {
+    font-size: 11px;
+}
+
+/* Mobile: slightly larger touch target */
+@media (max-width: 768px) {
+    .copy-btn {
+        padding: 5px 10px;
+        font-size: 11.5px;
+        min-height: 32px;
+        top: 6px;
+        right: 6px;
+    }
+
+    .code-block-wrapper pre {
+        padding-top: 40px;
+        padding: 40px 10px 12px;
+        border-radius: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .copy-btn span {
+        display: none; /* icon only on very small screens */
+    }
+    .copy-btn--copied span {
+        display: none;
+    }
+    .copy-btn {
+        padding: 6px 8px;
+        gap: 0;
+    }
+}
